@@ -41,8 +41,9 @@ namespace SalesMVC
                    options.UseMySql(Configuration.GetConnectionString("SalesMVCContext"), builder =>
                     builder.MigrationsAssembly("SalesMVC")));
 
-            services.AddScoped<SeedingService>(); //registra como dependencia
+            services.AddScoped<SeedingService>(); //registra como injeção de dependencia
             services.AddScoped<SellerService>();
+            services.AddScoped<DepartmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
