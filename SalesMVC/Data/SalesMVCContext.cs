@@ -9,6 +9,8 @@ namespace SalesMVC.Data
 {
     public class SalesMVCContext : DbContext
     {
+        internal readonly object SalesRecord;
+
         public SalesMVCContext (DbContextOptions<SalesMVCContext> options)
             : base(options)
         {
