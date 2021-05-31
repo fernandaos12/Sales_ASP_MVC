@@ -8,17 +8,23 @@ namespace SalesMVC.Models
     public class Seller
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Field Required")]
+        [StringLength(60, MinimumLength = 3 , ErrorMessage = "{0} Name should be minimun {1} lenght caracteres {2}")]
         public string Name { get; set; }
 
         [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Field Required")]
         public string Email { get; set; }
        
         [Display(Name = "Birth Date")] //customizando a label da table
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Required(ErrorMessage = "Field Required")]
         public DateTime DateTime { get; set; }
 
         [Display(Name = "Base Salary")]
+        [Required(ErrorMessage = "Field Required")]
         [DisplayFormat(DataFormatString ="{0:F2}")]
         public double BaseSalary { get; set; }
         public Department Department { get; set; }
