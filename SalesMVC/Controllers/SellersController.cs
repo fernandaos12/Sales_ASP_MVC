@@ -4,6 +4,7 @@ using SalesMVC.Services;
 using SalesMVC.Models;
 using SalesMVC.Models.ViewModels;
 using SalesMVC.Services.Exceptions;
+using System.Diagnostics;
 
 namespace SalesMVC.Controllers
 {
@@ -42,13 +43,13 @@ namespace SalesMVC.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Sorry Seller Id not provided."});
 
             }
             var obj = _sellerservice.FindbyId(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Sorry Seller Id not found." });
             }
             return View(obj);
 
@@ -65,13 +66,13 @@ namespace SalesMVC.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Sorry Seller Id not Provided." });
 
             }
             var obj = _sellerservice.FindbyId(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Sorry Seller Id not found." });
             }
             return View(obj);
         }
@@ -80,12 +81,12 @@ namespace SalesMVC.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Sorry Seller Id not provided." });
             }
             var obj = _sellerservice.FindbyId(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Sorry Seller Id not found." });
             }
 
             // carrega a tela de edicao carregando dados
@@ -102,21 +103,32 @@ namespace SalesMVC.Controllers
         {
             if(id != seller.Id)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "Sorry Seller Id miss match." });
             }
             try
             {
                 _sellerservice.Update(seller);
                 return RedirectToAction(nameof(Index));
             }
-            catch (NotFoundException)
+            catch (NotFoundException e)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            catch (DbConcurrencyException)
+            catch (DbConcurrencyException e)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewmodel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+        };
+            return View(viewmodel);
+
         }
 
     }
