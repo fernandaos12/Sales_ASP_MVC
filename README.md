@@ -21,6 +21,7 @@ This project is a Sales Department MVC system, where search, sales register, dep
 ##Database
 
 - MySql
+- Entity Framework
 
 #UML
 
