@@ -29,8 +29,6 @@ This project is a Sales Department MVC system, where search, sales register, dep
 
 ## Telas
 
-![sales](https://github.com/fernandaos12/Sales_ASP_MVC/blob/main/SalesMVC/Views/assets/uml_mvc_sales.png)
-
 ![SALES-RECORD](https://github.com/fernandaos12/Sales_ASP_MVC/blob/main/SalesMVC/Views/assets/sales_record.png)
 
 ![CREATE SELLER](https://github.com/fernandaos12/Sales_ASP_MVC/blob/main/SalesMVC/Views/assets/create_seller.png)
