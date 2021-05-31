@@ -25,5 +25,6 @@ namespace SalesMVC.Models
             Status = status;
             Seller = Seller;
         }
+
     }
 }
